@@ -1,0 +1,9 @@
+<aspectj>
+  <aspects>
+    <aspect name="com.example.helloworld.aspects.DaoExceptionHandler"/>
+
+    <weaver options="-verbose -showWeaveInfo">
+      <include within="com.example.helloworld.*"/>
+    </weaver>
+  </aspects>
+</aspectj>
