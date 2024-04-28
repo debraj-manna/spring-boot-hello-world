@@ -7,7 +7,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.retry.annotation.EnableRetry;
 
-//@Import({ DaoExceptionHandler.class })
 @SpringBootApplication
 @EnableRetry
 public class HelloWorldApplication {
