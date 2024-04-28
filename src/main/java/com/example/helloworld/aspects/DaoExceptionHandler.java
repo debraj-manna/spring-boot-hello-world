@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Component
 public class DaoExceptionHandler {
-  private Map<Long, String> errorLogMap;
+  private final Map<Long, String> errorLogMap;
 
   @AfterThrowing(
       pointcut =

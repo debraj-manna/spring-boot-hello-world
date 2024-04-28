@@ -12,7 +12,7 @@ import org.springframework.context.annotation.EnableLoadTimeWeaving;
 public class AspectConfig {
 
   @Bean
-  public Map<Long, String> errorLogTime() {
+  public Map<Long, String> errorLogMap() {
     log.info("Initialising Bean");
     return Map.of();
   }
