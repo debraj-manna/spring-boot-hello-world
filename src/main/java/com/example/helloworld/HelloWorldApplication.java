@@ -11,8 +11,6 @@ import org.springframework.retry.annotation.EnableRetry;
 @EnableRetry
 public class HelloWorldApplication {
   public static void main(String[] args) {
-    try (ConfigurableApplicationContext context = SpringApplication.run(HelloWorldApplication.class, args)) {
-      context.getBean(HelloWorldController.class).sendGreetings();
-    }
+    SpringApplication.run(HelloWorldApplication.class, args);
   }
 }
