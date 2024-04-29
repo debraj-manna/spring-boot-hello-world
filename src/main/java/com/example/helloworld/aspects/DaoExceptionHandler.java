@@ -2,18 +2,18 @@ package com.example.helloworld.aspects;
 
 import com.example.helloworld.utils.JooqUtil;
 import java.util.Map;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 
 @Aspect
 @Slf4j
-@AllArgsConstructor
-@Component
+@Configurable
 public class DaoExceptionHandler {
-  private final Map<Long, String> errorLogMap;
+  @Autowired
+  private Map<Long, String> errorLogMap;
 
   @AfterThrowing(
       pointcut =
