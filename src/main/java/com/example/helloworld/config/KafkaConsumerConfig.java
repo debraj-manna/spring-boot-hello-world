@@ -31,10 +31,10 @@ public class KafkaConsumerConfig {
 
     props.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, StringDeserializer.class);
     props.put(
-        ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 1);
+        ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 8);
     props.put(
         ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG,
-        300000);
+        (int)TimeUnit.MINUTES.toMillis(2));
     return props;
   }
 
@@ -43,7 +43,9 @@ public class KafkaConsumerConfig {
       ConcurrentMessageListenerContainer<String, String>, String, String>
   atLeastOnceKafkaListenerContainerFactory(GossiperMessageListener listener) {
     val factory = new ConcurrentKafkaListenerContainerFactory<String, String>();
-    factory.getContainerProperties().setAckMode(AckMode.RECORD);
+    factory.getContainerProperties().setAckMode(AckMode.COUNT_TIME);
+    factory.getContainerProperties().setAckCount(8);
+    factory.getContainerProperties().setAckTime(TimeUnit.SECONDS.toMillis(90));
     factory.setConsumerFactory(new DefaultKafkaConsumerFactory<>(consumerConfigBase()));
     factory.getContainerProperties().setMessageListener(listener);
     return factory;
