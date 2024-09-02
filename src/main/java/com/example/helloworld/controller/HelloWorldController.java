@@ -21,7 +21,7 @@ public class HelloWorldController {
             .body(
                 outputStream ->
                 {
-                    logMsg("Hello Outside Body Thread");
+                    logMsg("Hello Inside Body Thread");
                     outputStream.write("Hello World".getBytes());
                 }
             );
