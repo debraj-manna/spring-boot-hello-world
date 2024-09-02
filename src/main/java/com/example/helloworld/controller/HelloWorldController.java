@@ -14,38 +14,26 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 @AllArgsConstructor
 @Slf4j
 public class HelloWorldController {
-    public static final String CTX_KEY = "ctxName";
     @GetMapping("/hello")
     public ResponseEntity<StreamingResponseBody> sendGreetings() {
-        val field = BaggageField.getByName(CTX_KEY);
-        if (field != null) {
-            field.updateValue("ctxValue");
-        }
-        log.info("Thread: {} Context: {}", Thread.currentThread().getName(), BaggageField.getByName(CTX_KEY).getValue());
+        logMsg("Hello Outside Body Thread");
         return ResponseEntity.ok()
             .body(
                 outputStream ->
                 {
-                    log.info("Thread: {} Context: {}", Thread.currentThread().getName(), BaggageField.getByName(CTX_KEY).getValue());
+                    logMsg("Hello Outside Body Thread");
                     outputStream.write("Hello World".getBytes());
                 }
             );
     }
 
     @GetMapping("/hello1")
-    public ResponseEntity<StreamingResponseBody> sendGreetings1() {
-        val field = BaggageField.getByName(CTX_KEY);
-        if (field != null) {
-            field.updateValue("ctxValue");
-        }
-        log.info("Thread: {} Context: {}", Thread.currentThread().getName(), BaggageField.getByName(CTX_KEY).getValue());
-        return ResponseEntity.ok()
-            .body(
-                outputStream ->
-                {
-                    log.info("Thread: {} Context: {}", Thread.currentThread().getName(), BaggageField.getByName(CTX_KEY).getValue());
-                    outputStream.write("Hello World".getBytes());
-                }
-            );
+    public ResponseEntity<String> sendGreetings1() {
+        logMsg("Hello1");
+        return ResponseEntity.ok().body("Hello World");
+    }
+
+    private void logMsg(final String msg) {
+        log.info("Thread: {} {}", Thread.currentThread().getName(), msg);
     }
 }

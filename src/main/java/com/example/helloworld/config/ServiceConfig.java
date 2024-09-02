@@ -1,7 +1,5 @@
 package com.example.helloworld.config;
 
-import brave.propagation.CurrentTraceContext;
-import brave.propagation.StrictCurrentTraceContext;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import io.micrometer.context.ContextExecutorService;
 import io.micrometer.context.ContextScheduledExecutorService;
@@ -14,7 +12,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
